@@ -31,7 +31,7 @@ body {
       width: 75%; } }
 
 #page_wrap {
-  background: transparent url("../img/Rick2.png") right bottom no-repeat;
+  background: transparent url("../Images/Rick2.png") right bottom no-repeat;
   background-size: 25% auto;
   -webkit-box-flex: 1;
   -webkit-flex: 1;
@@ -86,9 +86,9 @@ button {
       -webkit-transform: translateX(-50%);
           -ms-transform: translateX(-50%);
               transform: translateX(-50%);
-      background: url(../img/play.svg) center center no-repeat; }
+      background: url(../Images/play.svg) center center no-repeat; }
     #GIF-container a.js-animate:before {
-      background: url(../img/pause.svg) center center no-repeat; }
+      background: url(../Images/pause.svg) center center no-repeat; }
 
 .loader {
   -webkit-box-flex: 1;
