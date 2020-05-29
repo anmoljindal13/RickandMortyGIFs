@@ -61,4 +61,42 @@ function alertContents() {
   animateGif(link);
 }
 
+function animateGif(link) {
+  var img    = link.childNodes[0];
+  var gifSrc = img.getAttribute('data-gif');
+  var imgSrc = img.getAttribute('src');
 
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    var animated = link.classList.contains('js-animate');
+
+    if(!animated) {
+      img.setAttribute('src', gifSrc);
+      link.classList.add('js-animate');
+    } else {
+      img.setAttribute('src', imgSrc);
+      link.classList.remove('js-animate');
+    }
+  });
+}
+
+function loadGif() {
+  var dataURL = 'http://api.giphy.com/v1/gifs/search?q=Rick and Morty&limit='+ NUMBER_OF_GIFS + '&api_key=dc6zaTOxFJmzC';
+  div.innerHTML = '';
+  makeRequest(dataURL);
+}
+
+function showLoader() {
+  loader.setAttribute('style', 'display: flex');
+}
+
+function hideLoader() {
+  loader.setAttribute('style', 'display: none');
+}
+
+button.addEventListener('click', function(e) { 
+  e.preventDefault();
+  loadGif();
+}, false);
+
+document.addEventListener('DOMContentLoaded', loadGif);
