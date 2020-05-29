@@ -25,3 +25,40 @@ function makeRequest(url) {
     request.send();
   }, SIMULATED_SLOWNESS);
 }
+
+
+function alertContents() {
+  var READY_STATE_DONE = 4;
+  var HTTP_STATUS_OK   = 200;
+
+  if (request.readyState !== READY_STATE_DONE) {
+    return;
+  }
+
+  hideLoader();
+
+  if (request.status !== HTTP_STATUS_OK) {
+    console.log('There was a problem with the request.');
+    return;
+  }
+
+  var data = JSON.parse(request.responseText).data;
+  var randomIndex = Math.floor(Math.random() * NUMBER_OF_GIFS);
+  var item = data[randomIndex];
+
+  var imgSrc  = item.images.fixed_height_still.url;
+  var gifSrc  = item.images.fixed_height.url;
+  var link = document.createElement("a");
+  var img  = document.createElement("img");
+
+  img.setAttribute('src', imgSrc);
+  img.setAttribute('data-gif', gifSrc);
+  link.setAttribute('href', gifSrc);
+  link.classList.add('js-gif');
+  link.appendChild(img);
+  div.appendChild(link);
+
+  animateGif(link);
+}
+
+
